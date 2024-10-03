@@ -13,24 +13,24 @@ serial numbers can help manufacturers locate products to provide after-sales ser
 event of a recall.
 
 .. seealso::
-   - `Odoo Tutorials: Serial Numbers <https://www.youtube.com/watch?v=ZP-gMz2X5AY>`
+   - `Odoo Tutorials: Serial Numbers <https://www.youtube.com/watch?v=ZP-gMz2X5AY>`_
 
 .. _inventory/product_management/enable-lots:
 
 Enable lots & serial numbers
 ============================
 
-To track products using serial numbers, there are two settings that need be enabled.
+To track products using serial numbers, two settings need to be enabled: the :ref:`Lots & Serial Numbers traceability setting <inventory/product_management/traceability-setting>`, and :ref:`serial number usage by operation type <inventory/product_management/operation-type-setting>`.
 
 .. _inventory/product_management/traceability-setting:
 
-Traceability Setting
+Traceability setting
 --------------------
 
 The :guilabel:`Lots & Serial Numbers` traceability feature *must* be enabled first to track
 products. To do so, go to :menuselection:`Inventory app --> Configuration --> Settings`, scroll
-down to the :guilabel:`Traceability` section, and click the box next to
-:guilabel:`Lots & Serial Numbers`. Remember to click the :guilabel:`Save` button to save changes.
+down to the :guilabel:`Traceability` section, and tick the
+:guilabel:`Lots & Serial Numbers` checkbox. Remember to click the :guilabel:`Save` button to save changes.
 
 
 .. image:: serial_numbers/enabled-setting.png
@@ -39,12 +39,13 @@ down to the :guilabel:`Traceability` section, and click the box next to
 
 .. _inventory/product_management/operation-type-setting:
 
-By Operation Type
+By operation type
 -----------------
 
-Next, the ability to create new serial numbers needs to be turned on for specific operation types,
-such as receiving or shipping goods. In other words, this setting allows for serial number tracking
-on warehouse receipts and delivery orders.
+Next, specify whether the ability to create new or use existing serial numbers should be turned on for particular operation types (such as shipping or receiving goods). In other words, this setting allows for serial number tracking on warehouse receipts and delivery orders.
+
+.. example::
+   Enabling the :guilabel:`Create New` option for receipts allows new serial numbers to be assigned as items are received. However, for delivery orders, it is often disabled to prevent workers from accidentally assigning serial numbers that do not exist in inventory.
 
 To enable the creation of new serial numbers on an operation, navigate to
 :menuselection:`Inventory app --> Configuration --> Operations Types`.
@@ -113,7 +114,7 @@ Once the :guilabel:`Lot/Serial Number` is generated, click the blank field next 
 :guilabel:`Product` to reveal a drop-down menu. From this menu, select the product to which this new
 number will be assigned.
 
-This form also provides the option to adjust the :guilabel:`Quantity`, to assign a unique
+This form also provides the option to adjust the :guilabel:`On Hand Quantity`, to assign a unique
 :guilabel:`Internal Reference` number (for additional traceability), and to assign this specific
 lot/serial number configuration to a specific company in the :guilabel:`Company` field. A detailed
 description of this specific lot/serial number can also be added in the
@@ -135,7 +136,8 @@ serial number.
 .. warning::
    If a product doesn't have a serial number assigned to it, a user error pop-up window may appear.
    The error message states that the product(s) in stock have no lot/serial number. However, a
-   lot/serial number can be assigned to the product by making an inventory adjustment.
+   lot/serial number can be assigned to the product by making an :doc:`inventory adjustment
+   <../../warehouses_storage/inventory_management/count_products>`.
 
 .. _inventory/product_management/incoming-outgoing-products:
 
@@ -159,20 +161,23 @@ form.
 Lots/serial number field
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Serial numbers can be entered directly into the Serial Numbers field on a receipt or delivery order.
+Serial numbers can be entered directly into the :guilabel:`Serial Numbers` field on a receipt or
+delivery order.
 
 .. image:: serial_numbers/enter-in-field.png
    :align: center
    :alt: Select value for Serial Number field on receipt.
 
 .. important::
-   To make the Serial Numbers field visible on a receipt or delivery order, click the
-   :icon:`oi-settings-adjust` :guilabel:`(Adjust Settings)` icon, and ensure the box next to Serial
-   Numbers is checked.
+   To make the :guilabel:`Serial Numbers` field visible on a receipt or delivery order, click the
+   :icon:`oi-settings-adjust` :guilabel:`(Adjust Settings)` icon, and in the drop-down menu, tick the :guilabel:`Serial
+   Numbers` checkbox.
 
    .. figure:: serial_numbers/field-visible.png
       :align: center
       :alt: Allow Serial Numbers field to show on a receipt or delivery order.
+      
+      Example **Serial Numbers** field on a delivery order. On the right of `Butter Croissant`, is a blue **Stock move** icon.
 
 .. _inventory/product_management/stock-move:
 
@@ -180,12 +185,12 @@ Stock move pop-up window
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 For various methods of assigning serial numbers individually or in bulk, click the
-:guilabel:`⦙≣ (bulleted list)` icon in the product line of a receipt.
+:icon:`fa-list` :guilabel:`(list)` icon in the product line of a receipt.
 
 Add a line
 **********
 
-In the :guilabel:`Open: Stock move` pop-up window that appears, serial numbers can be manually input
+In the :guilabel:`Open: Stock move` pop-up window, manually enter serial numbers 
 in the :guilabel:`Lot/Serial Number` column. This method is best reserved for adding only one or a
 few serial numbers.
 
@@ -227,7 +232,7 @@ Doing so opens a new popup, :guilabel:`Generate Serial numbers`, which contains 
 
 After filling out these fields, click the :guilabel:`Generate` button. The newly generates serials
 will now appear in the :guilabel:`Open: Stock move` window. By clicking :guilabel:`Save`, the
-:guilabel:`Quantity`and the :guilabel:`Serial Numbers` fields on the delivery order or receipt will
+:guilabel:`Quantity` and the :guilabel:`Serial Numbers` fields on the delivery order or receipt will
 update automatically.
 
 Import serials
@@ -240,7 +245,7 @@ Another option for assigning multiple serial numbers at once is to click the
    If the import button is not visible, ensure the :guilabel:`Create New` box is checked in the
    :ref:`receipt's configuration page <inventory/product_management/operation-type-setting>`.
 
-Doing so opens the :guilabel:`Import Lots` pop-up window. Enter each serial number on a separate
+Doing so opens the :guilabel:`Import Serials` pop-up window. Enter each serial number on a separate
 line in the :guilabel:`Lots/Serial numbers` text field.
 
 .. image:: serial_numbers/stock-move-import-serials.png
@@ -294,20 +299,20 @@ To access this page, first :ref:`select a warehouse receipt or delivery order
 <inventory/product_management/incoming-outgoing-products>`. Click on the
 :icon:`oi-view-list` :guilabel:`Moves smart button` at the top of the page.
 
-In the :guilabel:`Lot/Serial Number` column, manually type (or select from the dropdown)
+In the :guilabel:`Lot/Serial Number` column, manually type (or select from the drop-down menu)
 the desired serial numbers for each individual product.
 
 .. image:: serial_numbers/moves-button.png
    :align: center
    :alt: Show the detailed Moves page.
 
-When finished, click the receipt/delivery order's breadcrumb trail, and the assigned serial numbers
+When finished, click the receipt/delivery order's breadcrumbs, and the assigned serial numbers
 will be automatically saved.
 
 Traceability & Reporting
 ========================
 
-Manufacturers and companies can refer to the :guilabel:`Lots/Serial Numbers dashboard` and
+Manufacturers and companies can refer to the :guilabel:`Lots/Serial Numbers` dashboard and
 traceability reports to see the entire lifecycle of a product: when and where it originated,
 where it was stored, and who it was shipped to.
 
@@ -321,7 +326,7 @@ To see the full traceability of a product, or group by serial numbers, go to
 Reporting
 ---------
 
-From here, products with serial numbers assigned to them will be listed by default. Click the
+On the :guilabel:`Lots/Serial Numbers` dashboard, products with serial numbers assigned to them are listed by default. Click the
 :icon:`fa-caret-right` :guilabel:`(expand)` icon to show which serial numbers are assigned to the
 chosen product.
 
@@ -349,7 +354,7 @@ reused, there should be just one product per serial number.
    :doc:`/applications/inventory_and_mrp/inventory/product_management/product_tracking/reassign`
 
 .. tip::
-   In addition to using the :guilabel:`Lots/Serial Numbers dashboard`, there are several other
+   In addition to using the :guilabel:`Lots/Serial Numbers` dashboard, there are several other
    reporting templates that display serial number. Go to
    :menuselection:`Inventory app --> Reporting`, where the :guilabel:`Locations`report,
    :guilabel:`Moves History`report, and :guilabel:`Moves Analysis`report all include either
